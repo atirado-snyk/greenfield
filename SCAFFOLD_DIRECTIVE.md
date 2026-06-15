@@ -2,6 +2,7 @@
 *Repo:* git@github.com:atiradonet/greenfield.git
 
 *RUN THIS BEFORE installing Snyk Studio*
+
 This produces an honest baseline: the app exactly as Claude Code builds it, with nothing planted. Snyk scans what the model actually emits. Do NOT install or configure Snyk first.
 
 You are scaffolding a greenfield SaaS web application. Keep the application logic
