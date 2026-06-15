@@ -1,9 +1,7 @@
 # Claude Code Scaffold Directive — Housing Notes Demo (natural build)
-# Repo: git@github.com:atiradonet/greenfield.git
-#
-# RUN THIS BEFORE installing Snyk Studio. This produces an honest baseline:
-# the app exactly as Claude Code builds it, with nothing planted. Snyk scans
-# what the model actually emits. Do NOT install or configure Snyk first.
+*Repo:* git@github.com:atiradonet/greenfield.git
+
+*RUN THIS BEFORE* installing Snyk Studio. This produces an honest baseline: the app exactly as Claude Code builds it, with nothing planted. Snyk scans what the model actually emits. Do NOT install or configure Snyk first.
 
 You are scaffolding a greenfield SaaS web application. Keep the application logic
 deliberately simple: a "Resident Notes" board. A user types a note, submits it,
