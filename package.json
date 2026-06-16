@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "workspaces": [
-    "backend"
+    "backend",
+    "frontend"
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",
