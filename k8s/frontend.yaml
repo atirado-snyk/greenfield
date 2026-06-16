@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: housing-notes
+    component: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: housing-notes
+      component: frontend
+  template:
+    metadata:
+      labels:
+        app: housing-notes
+        component: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: housingnotesacr.azurecr.io/housing-notes-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 25m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app: housing-notes
+    component: frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: housing-notes
+    component: frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

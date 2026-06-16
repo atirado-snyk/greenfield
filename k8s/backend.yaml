@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: housing-notes
+    component: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: housing-notes
+      component: backend
+  template:
+    metadata:
+      labels:
+        app: housing-notes
+        component: backend
+    spec:
+      containers:
+        - name: backend
+          image: housingnotesacr.azurecr.io/housing-notes-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
+            - name: NODE_ENV
+              value: production
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: http
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  labels:
+    app: housing-notes
+    component: backend
+spec:
+  type: ClusterIP
+  selector:
+    app: housing-notes
+    component: backend
+  ports:
+    - name: http
+      port: 3000
+      targetPort: http
