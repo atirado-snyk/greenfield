@@ -22,7 +22,6 @@ frontend/vite.config.d.ts
 *.tfvars
 *.tfvars.json
 .terraform/
-.terraform.lock.hcl
 crash.log
 crash.*.log
 
