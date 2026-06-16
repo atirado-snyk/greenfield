@@ -40,3 +40,19 @@ All configuration is read from environment variables. See `backend/.env.example`
 | ------------- | ------- | ------------------------------------ |
 | `PORT`        | `3000`  | Backend HTTP port                    |
 | `AUTH_TOKEN`  | _unset_ | Optional bearer token for the API    |
+
+## Documentation
+
+This repository is both a working application and a teaching artifact. The
+governing documents describe what it is, how it is built, and how it is
+deployed:
+
+- **[SPEC.md](SPEC.md)** — what the system is, the target architecture, the
+  single production environment, and the demo scenarios. Start here.
+- **[BUILD_DIRECTIVE.md](BUILD_DIRECTIVE.md)** — the two-pass build order for the
+  building agent: an honest baseline first, then Snyk security integration.
+- **[DEPLOY.md](DEPLOY.md)** — the Azure deployment definition: OIDC/Workload
+  Identity Federation, the GHCR and ACR registries, Terraform remote state, and
+  ingress bootstrap.
+- **[CLAUDE.md](CLAUDE.md)** — engineering and delivery conventions, loaded by
+  the agent on every session.
